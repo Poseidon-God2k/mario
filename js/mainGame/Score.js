@@ -17,7 +17,7 @@ function Score() {
   this.init = function() {
     that.coinScore = 0;
     that.totalScore = 0;
-    that.lifeCount = 5;
+    that.lifeCount = 3;
 
     mainWrapper = view.getMainWrapper();
 
@@ -75,7 +75,7 @@ function Score() {
     view.style(scoreWrapper, { display: 'none' });
 
     that.coinScore = 0;
-    that.lifeCount = 5;
+    that.lifeCount = 3;
     that.totalScore = 0;
     that.updateCoinScore();
     that.updateTotalScore();

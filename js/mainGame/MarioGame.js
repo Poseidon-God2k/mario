@@ -208,8 +208,7 @@ function MarioGame() {
   };
 
   this.showInstructions = function() {
-    gameUI.writeText('Controls: Arrow keys for direction, shift to run, ctrl for bullets', 30, 30);
-    gameUI.writeText('Tip: Jumping while running makes you jump higher', 30, 60);
+    gameUI.writeText('Tip: Jumping while running makes you jump higher', 30, 30);
   };
 
   this.renderMap = function() {
@@ -389,6 +388,8 @@ function MarioGame() {
       if (element.type == 5) {
         //flag pole
         that.levelFinish(collisionDirection);
+        that.pauseGame();
+        that.gameWinner();
       }
     } else if (collisionDirection == 'b') {
       if (element.type != 5) {
@@ -761,6 +762,13 @@ function MarioGame() {
 
   this.pauseGame = function() {
     window.cancelAnimationFrame(animationID);
+  };
+
+  this.gameWinner = function() {
+    score.gameOverView();
+    gameUI.makeBox(0, 0, maxWidth, height);
+    gameUI.writeText('congratulation winner ', centerPos - 150, height - 300);
+    gameUI.writeText('Thanks For Playing', centerPos - 122, height / 2);
   };
 
   this.gameOver = function() {
