@@ -388,8 +388,7 @@ function MarioGame() {
       if (element.type == 5) {
         //flag pole
         that.levelFinish(collisionDirection);
-        that.pauseGame();
-        that.gameWinner();
+        
       }
     } else if (collisionDirection == 'b') {
       if (element.type != 5) {
@@ -737,6 +736,8 @@ function MarioGame() {
       mario.x += 20;
       mario.frame = 10;
       tickCounter += 1;
+      that.pauseGame();
+      that.gameWinner();
       if (tickCounter > maxTick) {
         that.pauseGame();
 
