@@ -55,6 +55,7 @@ var GameUI = (function() {
       ctx.fill();
     };
 
+
     this.writeText = function(text, x, y) {
       ctx.font = '20px SuperMario256';
       ctx.fillStyle = 'white';

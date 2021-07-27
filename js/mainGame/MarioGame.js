@@ -736,18 +736,25 @@ function MarioGame() {
       mario.x += 20;
       mario.frame = 10;
       tickCounter += 1;
-      that.pauseGame();
-      that.gameWinner();
+      
       if (tickCounter > maxTick) {
-        that.pauseGame();
-
         mario.x += 10;
         tickCounter = 0;
         mario.frame = 12;
 
-        //sound when stage clears
-        gameSound.play('stageClear');
+        if(currentLevel == 2){
+          that.pauseGame();
+          that.gameWinner();
+          return;
+        }
+        else{
+          that.pauseGame();
+          that.gameWinnerRound();
+        }
+        
 
+        
+        
         timeOutId = setTimeout(function() {
           currentLevel++;
           if (originalMaps[currentLevel]) {
@@ -756,7 +763,7 @@ function MarioGame() {
           } else {
             that.gameOver();
           }
-        }, 5000);
+        }, 6000);
       }
     }
   };
@@ -765,12 +772,35 @@ function MarioGame() {
     window.cancelAnimationFrame(animationID);
   };
 
+  this.gameWinnerRound = function() {
+    
+    
+   
+    
+    var n = 5;
+    setTimeout(countDown,1000);
+
+    function countDown(){
+      n--;
+      if(n > 0){
+          setTimeout(countDown,1000);
+      }
+      score.gameOverView();
+      gameUI.makeBox(0, 0, maxWidth, height);
+      gameUI.writeText('Congratulation', centerPos - 100, height - 300);
+      gameUI.writeText('Continue to next Level', centerPos - 122, height / 2);
+      gameUI.writeText(n, centerPos + 170, height / 2);
+    }
+    
+  };
+  
   this.gameWinner = function() {
     score.gameOverView();
     gameUI.makeBox(0, 0, maxWidth, height);
-    gameUI.writeText('congratulation winner ', centerPos - 150, height - 300);
+    gameUI.writeText('Congratulation Winner ', centerPos - 150, height - 300);
     gameUI.writeText('Thanks For Playing', centerPos - 122, height / 2);
   };
+
 
   this.gameOver = function() {
     score.gameOverView();
